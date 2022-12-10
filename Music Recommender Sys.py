@@ -1,23 +1,8 @@
-"""
-Created on 11/27/22
-@author:   Samuel Friedman
-@author:   Gabriel Talbert Bunt
-@author:   Collin Smith
-@author:   Marcus Hom
-Pledge:    I pledge my honor that I have abided by the Stevens Honor System
 
-CS115 - Group Project
-Team: Crazy Coders
-"""
 from pathlib import Path
 
 
 def main():
-    """Where the main loop is run -Marcus"""
-    """
-    Contains all of the hooks to functionality
-    -Gabriel
-    """
 
     database = loadDatabase()
     username = input(
@@ -58,14 +43,9 @@ s - Show Preferences"""
 
 
 def loadDatabase(filename: str = "musicrecplus.txt") -> dict:
-    """
-    Takes in file name to read database from.
-    Returns dict with format {UserName: (Artist1, Artist2, Artist3)}
-    -Gabriel
-    """
     """loads the database from the file named musicrecplus.txt,
     if it exists. Otherwise it creates the file. Checks if user is
-    in the database, if not it adds to database along with their preferences- Marcus"""
+    in the database, if not it adds to database along with their preferences"""
     filename = Path(filename)
     filename.touch(exist_ok=True)  # will create file, if it exists will do nothing
     database = {}
@@ -85,7 +65,6 @@ def recommendations(username: str, database: dict) -> tuple:
     """
     Takes in username and database dict.
     Returns a tuple of artist names.
-    -Samuel Friedman
     """
     # gets the users artist
     user_artists = database[username]
@@ -124,7 +103,7 @@ def recommendations(username: str, database: dict) -> tuple:
 
 def mostPopularHelper(userDict):
     """returns the artist that occurs in users preferences the most. Is a helper for
-    most popular function -Marcus"""
+    most popular function"""
     artistPopularity = {}
     for x in userDict:
         if x[-1] != "$":
@@ -141,7 +120,7 @@ def mostPopularHelper(userDict):
 
 
 def mostPopular(userDict):
-    """returns the top 3 artists that appear in users preferences. -Marcus"""
+    """returns the top 3 artists that appear in users preferences."""
     mostPop = mostPopularHelper(userDict)[:3]
     a = ""
     # takes the top 3 most popular artists
@@ -153,7 +132,7 @@ def mostPopular(userDict):
 
 
 def highestPopularity(userDict):
-    """returns how popular the most popular artist is. -Marcus"""
+    """returns how popular the most popular artist is."""
     x = mostPopularHelper(userDict)[0]
     a = ""
     if x == "":
@@ -166,7 +145,6 @@ def enterPreferences() -> tuple:
     """
     Takes in nothing.
     Returns the tuple of the entered preferences.
-    -Gabriel
     """
     preferences = []
     while (artist := input("Enter an artist that you like (Enter to finish):\n")) != "":
@@ -182,7 +160,6 @@ def mostLikesUser(database: dict) -> str:
     """
     Takes in a database dict.
     Returns the name of the user that has liked the most artists.
-    -Samuel Friedman
     """
     # makes an empty dictionary to append values to
     user_likes = {}
@@ -222,7 +199,7 @@ def saveDatabase(database: dict, filename: str) -> None:
 
 def showPreferences(userName, userDict):
     """
-    Extra credit, shows current users preferences -Marcus
+    Extra credit, shows current users preferences 
     """
     [print(x) for x in userDict[userName]]
 
